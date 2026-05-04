@@ -108,7 +108,7 @@ export default function App() {
       paymentNote: "Cash buyer - no financing contingency required.",
       feedback: "Loved the marina view and modern finishes. Asking about payment flexibility.",
       nextViewing: "Scheduled for 15 Apr 2026",
-      agentNote: "Prefers quick closing. Has cash ready. Strong buyer - prioritize follow-up."
+      agentComment: "Prefers quick closing. Has cash ready. Strong buyer - prioritize follow-up."
     },
     {
       id: 2,
@@ -121,7 +121,7 @@ export default function App() {
       payment: "Mortgage",
       paymentNote: "Mortgage means the buyer is using bank financing to purchase the property.",
       feedback: "Good layout but concerned about parking situation.",
-      agentNote: "Needs mortgage pre-approval. Expected within 2 weeks. Follow up on parking concerns."
+      agentComment: "Needs mortgage pre-approval. Expected within 2 weeks. Follow up on parking concerns."
     },
     {
       id: 3,
@@ -129,7 +129,7 @@ export default function App() {
       time: "12 Apr 2026 · 11:00 AM",
       status: "Scheduled",
       budget: "AED 2.7M - 3.2M",
-      agentNote: "First-time viewer. Interested in marina-facing units."
+      agentComment: "First-time viewer. Interested in marina-facing units."
     },
     {
       id: 4,
@@ -137,7 +137,7 @@ export default function App() {
       time: "14 Apr 2026 · 4:00 PM",
       status: "Scheduled",
       budget: "AED 2.6M - 2.8M",
-      agentNote: "Rescheduled from earlier date. Very interested based on initial call."
+      agentComment: "Rescheduled from earlier date. Very interested based on initial call."
     }
   ];
   // Navigation items
@@ -269,8 +269,8 @@ export default function App() {
 
               <div className="flex items-center gap-4 pr-1">
                 <div className="bg-white border border-[#E5E7EB] rounded-[8px] px-3 py-1.5 shadow-[0_2px_6px_rgba(0,0,0,0.06)] flex items-center justify-center">
-                  <div className="bg-[#014282] px-3 py-1 rounded-[4px] flex items-center justify-center">
-                    <span className="text-white text-[11px] font-[700] uppercase tracking-tight whitespace-nowrap">Prime Land Properties</span>
+                  <div className="bg-[#EEF6FF] px-3 py-1 rounded-[4px] flex items-center justify-center border border-[#DBEAFE]">
+                    <span className="text-[#0369A1] text-[11px] font-[750] uppercase tracking-tight whitespace-nowrap">Prime Land Properties</span>
                   </div>
                 </div>
               </div>
@@ -306,8 +306,8 @@ export default function App() {
               </div>
               <div>
                 <h3 className="text-[15px] font-[700] text-[#111827] mb-2">{MOCK_AGENT.name}</h3>
-                <div className="bg-[#014282] px-2.5 py-1 rounded-[4px] inline-flex items-center justify-center mb-3">
-                  <span className="text-white text-[9px] font-[700] uppercase tracking-wider whitespace-nowrap">Prime Land Properties</span>
+                <div className="bg-[#EEF6FF] px-2.5 py-1 rounded-[4px] inline-flex items-center justify-center mb-3 border border-[#DBEAFE]">
+                  <span className="text-[#0369A1] text-[9px] font-[800] uppercase tracking-wider whitespace-nowrap">Prime Land Properties</span>
                 </div>
                 <div className="flex">
                   <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#F0FDF4] border border-[#DCFCE7] rounded-full">
@@ -483,7 +483,7 @@ export default function App() {
               </div>
               <div className="flex flex-col">
                 <span className="text-[28px] font-[700] text-[#166534] leading-none">2</span>
-                <span className="text-[15px] font-[500] text-[#16A34A] mt-1">Viewings Completed</span>
+                <span className="text-[15px] font-[500] text-[#16A34A] mt-1">Viewings Done</span>
               </div>
             </div>
           </div>
@@ -606,7 +606,7 @@ export default function App() {
                           <h6 className="text-[15px] font-[700] text-[#111827] mb-2">Agent Comments</h6>
                           <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[14px] p-4">
                             <p className="text-[14px] text-[#166534] font-medium leading-relaxed">
-                              {viewing.agentNote}
+                              {viewing.agentComment}
                             </p>
                           </div>
                         </div>
