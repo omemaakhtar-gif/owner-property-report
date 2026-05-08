@@ -108,7 +108,7 @@ export default function App() {
       paymentNote: "Cash buyer - no financing contingency required.",
       feedback: "Loved the marina view and modern finishes. Asking about payment flexibility.",
       nextViewing: "Scheduled for 15 Apr 2026",
-      agentComment: "Prefers quick closing. Has cash ready. Strong buyer - prioritize follow-up."
+      agentNote: "Prefers quick closing. Has cash ready. Strong buyer - prioritize follow-up."
     },
     {
       id: 2,
@@ -121,7 +121,7 @@ export default function App() {
       payment: "Mortgage",
       paymentNote: "Mortgage means the buyer is using bank financing to purchase the property.",
       feedback: "Good layout but concerned about parking situation.",
-      agentComment: "Needs mortgage pre-approval. Expected within 2 weeks. Follow up on parking concerns."
+      agentNote: "Needs mortgage pre-approval. Expected within 2 weeks. Follow up on parking concerns."
     },
     {
       id: 3,
@@ -129,7 +129,7 @@ export default function App() {
       time: "12 Apr 2026 · 11:00 AM",
       status: "Scheduled",
       budget: "AED 2.7M - 3.2M",
-      agentComment: "First-time viewer. Interested in marina-facing units."
+      agentNote: "First-time viewer. Interested in marina-facing units."
     },
     {
       id: 4,
@@ -137,18 +137,18 @@ export default function App() {
       time: "14 Apr 2026 · 4:00 PM",
       status: "Scheduled",
       budget: "AED 2.6M - 2.8M",
-      agentComment: "Rescheduled from earlier date. Very interested based on initial call."
+      agentNote: "Rescheduled from earlier date. Very interested based on initial call."
     }
   ];
   // Navigation items
   const navigationItems = [
+    { name: 'AI Summary', id: 'ai-summary' },
     { name: 'Performance Overview', id: 'performance-overview' },
     { name: 'Viewings', id: 'viewings' },
     { name: 'Offers Received', id: 'offers-received' },
-    { name: 'Time to Sell', id: 'time-to-sell' },
-    { name: 'Market Valuation', id: 'market-valuation' },
-    { name: 'Market Insights & Position', id: 'market-insights-position' },
-    { name: 'Comparables', id: 'market-comparables' },
+    { name: 'TruEstimate Valuation', id: 'market-valuation' },
+    { name: 'Market Insights', id: 'market-insights-position' },
+    { name: 'Market Comparables', id: 'market-comparables' },
     { name: 'Listing Strength', id: 'listing-quality' },
   ];
 
@@ -166,8 +166,8 @@ export default function App() {
     }
   };
 
-  // Agent Comments items
-  const agentCommentsList = [
+  // Agent Notes items
+  const agentNotesList = [
     { date: '10 Apr 2026', text: 'Owner is motivated to sell within 60 days. Price negotiation possible up to 5%.' },
     { date: '5 Apr 2026', text: 'Received multiple inquiries from serious buyers. Schedule viewings for this week.' },
     { date: '28 Mar 2026', text: 'Property listed. Owner prefers buyers with ready financing.' },
@@ -300,27 +300,48 @@ export default function App() {
 
           {/* Agent Profile Card */}
           <div className="bg-white border border-[#E5E7EB] rounded-[24px] p-6 shadow-sm shrink-0">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-sm border-2 border-white ring-1 ring-gray-100">
+            <div className="flex gap-4 mb-5">
+              <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-sm border border-gray-100 shrink-0">
                 <img src={MOCK_AGENT.imageUrl} alt={MOCK_AGENT.name} className="w-full h-full object-cover" />
               </div>
-              <div>
-                <h3 className="text-[15px] font-[700] text-[#111827] mb-2">{MOCK_AGENT.name}</h3>
-                <div className="bg-[#EEF6FF] px-2.5 py-1 rounded-[4px] inline-flex items-center justify-center mb-3 border border-[#DBEAFE]">
-                  <span className="text-[#0369A1] text-[9px] font-[800] uppercase tracking-wider whitespace-nowrap">Prime Land Properties</span>
-                </div>
-                <div className="flex">
-                  <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#F0FDF4] border border-[#DCFCE7] rounded-full">
+              <div className="min-w-0">
+                <h3 className="text-[15px] font-[800] text-[#111827] mb-1 truncate">{MOCK_AGENT.name}</h3>
+                <div className="flex flex-col gap-1.5">
+                  <div className="bg-[#EEF6FF] px-2 py-0.5 rounded-[4px] inline-flex items-center justify-center border border-[#DBEAFE] w-fit">
+                    <span className="text-[#0369A1] text-[9px] font-[800] uppercase tracking-wider truncate">Prime Land Properties</span>
+                  </div>
+                  <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#F0FDF4] border border-[#DCFCE7] rounded-full w-fit">
                     <Award size={10} className="text-[#166534]" />
-                    <span className="text-[10px] font-[700] text-[#166534] tracking-tight">TruBroker™</span>
+                    <span className="text-[9px] font-[800] text-[#166534] tracking-tight">TruBroker™</span>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="mb-5">
+              <div className="inline-flex items-center bg-[#E6F4F1] px-3 py-1 rounded-full border border-[#D1EBE5]">
+                <span className="text-[11px] font-[700] text-[#0FAF8F]">#4 Top Agent in Dubai Marina</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 pt-4 border-t border-[#F1F5F9]">
+              <div className="flex justify-between text-[11px] font-[600] text-[#64748B]">
+                <span>Active Listings:</span>
+                <span className="text-[#111827] font-[700]">24</span>
+              </div>
+              <div className="flex justify-between text-[11px] font-[600] text-[#64748B]">
+                <span>TruCheck™:</span>
+                <span className="text-[#111827] font-[700]">18</span>
+              </div>
+              <div className="flex justify-between text-[11px] font-[600] text-[#64748B]">
+                <span>Checked:</span>
+                <span className="text-[#111827] font-[700]">6</span>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-[#F1F5F9]">
               <div className="bg-[#F0FDF4]/50 rounded-[12px] p-2.5 border border-[#E5E7EB]">
                 <div className="flex items-center gap-1.5 mb-1">
-                  <Home size={13} className="text-[#00897B]/60" />
+                  <Home size={13} className="text-[#0FAF8F]/60" />
                   <div className="text-[10px] font-[700] text-[#64748B]">Sale</div>
                 </div>
                 <div className="text-[18px] font-[800] text-[#111827]">{MOCK_AGENT.saleMetric}</div>
@@ -358,6 +379,50 @@ export default function App() {
         <div className="flex-1 min-w-0">
           <main>
 
+        {/* AI Summary Section */}
+        <section id="ai-summary" className="mb-12">
+          <div className="bg-[#F0F7F5] border border-[#D6ECE7] rounded-[24px] p-8 shadow-[0_0_20px_rgba(15,175,143,0.1)] relative overflow-hidden">
+            {/* Background highlight like Gemini */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-radial from-[#E6F4F1] to-transparent opacity-50 -mr-20 -mt-20 pointer-events-none"></div>
+            
+            <div className="flex items-center gap-3 mb-5 relative">
+              <div className="w-10 h-10 bg-[#E6F4F1] rounded-xl flex items-center justify-center text-[#0FAF8F] shadow-sm">
+                <Sparkles size={20} />
+              </div>
+              <h2 className="text-[24px] font-[800] text-[#111827]">AI Summary</h2>
+            </div>
+
+            <div className="relative z-10 max-w-4xl">
+              <p className="text-[16px] text-[#4B5563] leading-relaxed font-[500] mb-6">
+                This 2-bedroom apartment in DAMAC Heights is performing strongly, with pricing aligned to TruEstimate™ valuations and sustained buyer interest in Dubai Marina. The listing is generating healthy engagement, competitive offers, and strong marketplace visibility.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-[14px] text-[#4B5563] font-[500]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0FAF8F] mt-[7px] shrink-0" />
+                    <span>4 offers received, with the strongest cash offer at <span className="font-[700] text-[#111827]">AED 2.75M</span></span>
+                  </li>
+                  <li className="flex items-start gap-3 text-[14px] text-[#4B5563] font-[500]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0FAF8F] mt-[7px] shrink-0" />
+                    <span>4 viewings completed/scheduled, indicating sustained buyer interest</span>
+                  </li>
+                </ul>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-[14px] text-[#4B5563] font-[500]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0FAF8F] mt-[7px] shrink-0" />
+                    <span>Demand for premium 2BR units in Dubai Marina remains high with limited competing inventory</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-[14px] text-[#4B5563] font-[500]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0FAF8F] mt-[7px] shrink-0" />
+                    <span>Listing Strength score of 9/10 supported by TruCheck™ verification and strong visibility performance</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Performance Overview Section */}
         <section id="performance-overview" className="mb-12">
           <div className="flex justify-between items-center mb-6">
@@ -370,61 +435,61 @@ export default function App() {
           </div>
           
           {/* Row 1: Primary Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            {/* Listing Views */}
-            <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[20px] p-8 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            {/* Search Appearances */}
+            <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[20px] p-6 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
               <div className="flex justify-between items-start">
-                <div className="w-[40px] h-[40px] bg-[#BBF7D0] rounded-[10px] flex items-center justify-center text-[#166534]">
-                  <Eye size={22} />
+                <div className="w-[36px] h-[36px] bg-[#BBF7D0] rounded-[8px] flex items-center justify-center text-[#166534]">
+                  <Eye size={20} />
                 </div>
               </div>
-              <div className="mt-6">
+              <div className="mt-4">
                 <div className="flex items-baseline gap-2">
-                  <div className="text-[32px] font-[700] text-[#111827]">4,892</div>
-                  <div className="flex items-center gap-1 text-[14px] font-[700] text-[#166534]">
+                  <div className="text-[28px] font-[700] text-[#111827]">4,892</div>
+                  <div className="flex items-center gap-1 text-[12px] font-[700] text-[#166534]">
                     <span>↗ 12.4%</span>
                   </div>
                 </div>
-                <div className="text-[15px] font-[600] text-[#4B5563] mt-1">Listing Views</div>
-                <div className="text-[12px] text-[#6B7280] mt-1 leading-relaxed font-[500]">compared to similar properties in Dubai Marina</div>
+                <div className="text-[14px] font-[600] text-[#4B5563] mt-0.5">Search Appearances</div>
+                <div className="text-[11px] text-[#6B7280] mt-1 leading-relaxed font-[500]">vs similar properties</div>
               </div>
             </div>
 
-            {/* Clicks */}
-            <div className="bg-[#EFF6FF] border border-[#DBEAFE] rounded-[20px] p-8 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+            {/* Listing Clicks */}
+            <div className="bg-[#EFF6FF] border border-[#DBEAFE] rounded-[20px] p-6 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
               <div className="flex justify-between items-start">
-                <div className="w-[40px] h-[40px] bg-[#BFDBFE] rounded-[10px] flex items-center justify-center text-[#1D4ED8]">
-                  <MousePointer2 size={22} />
+                <div className="w-[36px] h-[36px] bg-[#BFDBFE] rounded-[8px] flex items-center justify-center text-[#1D4ED8]">
+                  <MousePointer2 size={20} />
                 </div>
               </div>
-              <div className="mt-6">
+              <div className="mt-4">
                 <div className="flex items-baseline gap-2">
-                  <div className="text-[32px] font-[700] text-[#111827]">847</div>
-                  <div className="flex items-center gap-1 text-[14px] font-[700] text-[#166534]">
+                  <div className="text-[28px] font-[700] text-[#111827]">847</div>
+                  <div className="flex items-center gap-1 text-[12px] font-[700] text-[#166534]">
                     <span>↗ 8.2%</span>
                   </div>
                 </div>
-                <div className="text-[15px] font-[600] text-[#4B5563] mt-1">Clicks</div>
-                <div className="text-[12px] text-[#6B7280] mt-1 leading-relaxed font-[500]">compared to similar properties in Dubai Marina</div>
+                <div className="text-[14px] font-[600] text-[#4B5563] mt-0.5">Listing Clicks</div>
+                <div className="text-[11px] text-[#6B7280] mt-1 leading-relaxed font-[500]">vs similar properties</div>
               </div>
             </div>
 
-            {/* Leads */}
-            <div className="bg-white border border-[#E5E7EB] rounded-[20px] p-8 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+            {/* Inquiries */}
+            <div className="bg-white border border-[#E5E7EB] rounded-[20px] p-6 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
               <div className="flex justify-between items-start">
-                <div className="w-[40px] h-[40px] bg-[#F3F4F6] rounded-[10px] flex items-center justify-center text-[#374151]">
-                  <Users size={22} />
+                <div className="w-[36px] h-[36px] bg-[#F3F4F6] rounded-[8px] flex items-center justify-center text-[#374151]">
+                  <Users size={20} />
                 </div>
               </div>
-              <div className="mt-6">
+              <div className="mt-4">
                 <div className="flex items-baseline gap-2">
-                  <div className="text-[32px] font-[700] text-[#111827]">34</div>
-                  <div className="flex items-center gap-1 text-[14px] font-[700] text-[#EF4444]">
-                    <span>↘ 5.1%</span>
+                  <div className="text-[28px] font-[700] text-[#111827]">34</div>
+                  <div className="flex items-center gap-1 text-[12px] font-[700] text-[#166534]">
+                    <span>↗ 4.2%</span>
                   </div>
                 </div>
-                <div className="text-[15px] font-[600] text-[#4B5563] mt-1">Leads</div>
-                <div className="text-[12px] text-[#6B7280] mt-1 leading-relaxed font-[500]">compared to similar properties in Dubai Marina</div>
+                <div className="text-[14px] font-[600] text-[#4B5563] mt-0.5">Inquiries</div>
+                <div className="text-[11px] text-[#6B7280] mt-1 leading-relaxed font-[500]">investors & buyers</div>
               </div>
             </div>
           </div>
@@ -552,15 +617,6 @@ export default function App() {
                               </div>
                             </>
                           )}
-                          {viewing.nextViewing && (
-                            <div className="mt-6 bg-[#EFF6FF] border border-[#DBEAFE] rounded-[12px] p-4 flex items-center gap-3">
-                              <Clock size={18} className="text-[#2563EB]" />
-                              <div>
-                                <div className="text-[12px] font-[700] text-[#1D4ED8]">Next Viewing</div>
-                                <div className="text-[14px] font-[600] text-[#2563EB]">{viewing.nextViewing}</div>
-                              </div>
-                            </div>
-                          )}
                         </div>
                       </div>
 
@@ -571,11 +627,6 @@ export default function App() {
                           <h5 className="text-[15px] font-[700]">Buyer Offer & Payment Details</h5>
                         </div>
                         <div className="space-y-4">
-                          <div className="flex gap-4">
-                            <span className="text-[14px] text-[#9CA3AF] font-[500] w-32 shrink-0">Budget Range:</span>
-                            <span className="text-[14px] font-[600] text-[#4B5563]">{viewing.budget}</span>
-                          </div>
-                          
                           {viewing.status === 'Completed' && (
                             <>
                               {viewing.suggested && (
@@ -596,17 +647,17 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Agent Comments Row */}
+                    {/* Agent Notes Row */}
                     <div className="mt-8 pt-6 border-t border-[#F3F4F6]">
                       <div className="flex items-start gap-3">
                         <div className="mt-1">
                           <MessageSquare size={18} className="text-[#008459]" />
                         </div>
                         <div className="flex-1">
-                          <h6 className="text-[15px] font-[700] text-[#111827] mb-2">Agent Comments</h6>
+                          <h6 className="text-[15px] font-[700] text-[#111827] mb-2">Agent Notes</h6>
                           <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[14px] p-4">
                             <p className="text-[14px] text-[#166534] font-medium leading-relaxed">
-                              {viewing.agentComment}
+                              {viewing.agentNote}
                             </p>
                           </div>
                         </div>
@@ -624,7 +675,7 @@ export default function App() {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-[20px] font-[700] text-[#111827]">Offers Received</h2>
           </div>
- 
+
           <div className="bg-white border border-[#E5E7EB] rounded-[16px] overflow-hidden shadow-sm">
             <table className="w-full text-left border-collapse table-fixed">
               <thead>
@@ -677,7 +728,7 @@ export default function App() {
                             className={`inline-flex items-center gap-2 text-[14px] font-[700] transition-all ${isExpanded ? 'text-[#111827]' : 'text-[#4B5563] hover:text-[#111827]'}`}
                           >
                             <MessageSquare size={18} className={isExpanded ? 'text-[#111827]' : 'text-[#9CA3AF]'} />
-                            <span className="inline">Comments</span> {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                            <span className="inline">Notes</span> {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                           </button>
                         </td>
                       </tr>
@@ -689,7 +740,7 @@ export default function App() {
                               animate={{ height: 'auto', opacity: 1 }}
                               className="bg-white border border-[#E5E7EB] rounded-[16px] p-6 shadow-sm"
                             >
-                              <h6 className="text-[15px] font-[700] text-[#374151] mb-2">Agent Comments</h6>
+                              <h6 className="text-[15px] font-[700] text-[#374151] mb-2">Agent Notes</h6>
                               <p className="text-[15px] text-[#4B5563] leading-relaxed font-[500]">
                                 {row.note}
                               </p>
@@ -705,63 +756,10 @@ export default function App() {
           </div>
         </section>
 
-        {/* Time to Sell Section */}
-        <section id="time-to-sell" className="mb-12">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-[20px] font-[700] text-[#111827]">Time to Sell</h2>
-          </div>
-
-          <div className="bg-white border border-[#E5E7EB] rounded-[24px] p-8 shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              {/* Avg. Similar Properties */}
-              <div className="bg-[#F9FAFB] border border-[#F1F5F9] rounded-[24px] p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-[24px] h-[24px] flex items-center justify-center text-[#64748B]">
-                    <Clock size={22} />
-                  </div>
-                  <span className="text-[14px] font-[700] text-[#64748B] tracking-wider">Avg. similar properties</span>
-                </div>
-                <div className="flex items-baseline gap-2 mb-1">
-                  <span className="text-[48px] font-[700] text-[#111827]">42</span>
-                  <span className="text-[20px] font-[700] text-[#64748B]">days</span>
-                </div>
-                <div className="text-[15px] text-[#64748B] font-[500]">Average time to sell</div>
-              </div>
- 
-              {/* Your Listing */}
-              <div className="bg-white border border-[#E5E7EB] rounded-[24px] p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-[24px] h-[24px] flex items-center justify-center text-[#B45309]">
-                    <TrendingUp size={22} />
-                  </div>
-                  <span className="text-[14px] font-[700] text-[#B45309] tracking-wider">Your listing</span>
-                </div>
-                <div className="flex items-baseline gap-2 mb-1">
-                  <span className="text-[48px] font-[700] text-[#B45309]">47</span>
-                  <span className="text-[20px] font-[700] text-[#B45309]">days</span>
-                </div>
-                <div className="text-[15px] text-[#B45309] font-[700]">5 days above avg</div>
-              </div>
-            </div>
- 
-                <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-[20px] p-6 flex items-start gap-4">
-                  <div className="text-[#64748B] shrink-0 mt-0.5">
-                    <AlertCircle size={28} />
-                  </div>
-                  <div>
-                    <h4 className="text-[18px] font-[700] text-[#111827] mb-1.5">Above average market time</h4>
-                    <p className="text-[16px] text-[#6B7280] leading-relaxed font-[500]">
-                      Properties similar to yours in Dubai Marina typically sell within <span className="font-[700]">42</span> days. Consider adjusting your pricing strategy or boosting visibility to accelerate the sale.
-                    </p>
-                  </div>
-                </div>
-              </div>
-          </section>
-
-        {/* Market Valuation Section */}
+        {/* TruEstimate Valuation Section */}
         <section id="market-valuation" className="mb-12">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-[20px] font-[700] text-[#111827]">Market Valuation</h2>
+            <h2 className="text-[20px] font-[700] text-[#111827]">TruEstimate Valuation</h2>
             <div className="flex items-center gap-1.5 text-[14px]">
               <Sparkles size={16} className="text-[#008459]" />
               <span className="text-[#6B7280]">Powered by</span>
@@ -823,56 +821,29 @@ export default function App() {
                 </div>
               </div>
             </div>
-
-            {/* Agent Recommendation Box */}
-            <div className="mt-6 pt-6 border-t border-[#F1F5F9]">
-              <div className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-[20px] p-6 lg:p-7 flex flex-col lg:flex-row gap-6 items-start lg:items-center">
-                <div className="w-14 h-14 bg-white border border-[#E2E8F0] rounded-[16px] flex items-center justify-center text-[#00897B] shrink-0 shadow-sm">
-                  <CheckCircle size={24} />
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-[16px] font-[800] text-[#111827] mb-1.5">Agent Recommendation</h4>
-                  <p className="text-[14px] text-[#64748B] leading-relaxed font-[500]">
-                    The listing price of <span className="text-[#111827] font-[700]">AED 2.85M</span> is well-positioned within the TruEstimate™ range. We recommend maintaining this price point to attract serious buyers while remaining competitive in the current Dubai Marina market.
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* Market Insights & Position Section */}
+        {/* Market Insights Section */}
         <section id="market-insights-position" className="mb-14">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-[20px] font-[700] text-[#111827]">Market Insights & Position</h2>
+            <h2 className="text-[20px] font-[700] text-[#111827]">Market Insights</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Demand Trend Card */}
             <div className="bg-white border border-[#E5E7EB] rounded-[16px] p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-[44px] h-[44px] bg-[#F0FDF4] rounded-[12px] flex items-center justify-center text-[#166534] shrink-0 border border-[#DCFCE7]">
                   <TrendingUp size={22} />
                 </div>
-                <div>
-                  <div className="text-[15px] font-[700] text-[#111827] mb-1 font-sans">Demand trend</div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-[15px] font-[700] text-[#111827] font-sans">Demand trend</div>
+                    <span className="px-2.5 py-0.5 bg-[#E6F4F1] border border-[#D1EBE5] rounded-full text-[11px] font-[700] text-[#0FAF8F]">High</span>
+                  </div>
                   <p className="text-[13px] text-[#6B7280] leading-relaxed font-[500]">
-                    Buyer interest is increasing by 12% month-over-month.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Buyer Type Card */}
-            <div className="bg-white border border-[#E5E7EB] rounded-[16px] p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-[44px] h-[44px] bg-[#EFF6FF] rounded-[12px] flex items-center justify-center text-[#1D4ED8] shrink-0 border border-[#DBEAFE]">
-                  <Users size={22} />
-                </div>
-                <div>
-                  <div className="text-[15px] font-[700] text-[#111827] mb-1 font-sans">Buyer type</div>
-                  <p className="text-[13px] text-[#6B7280] leading-relaxed font-[500]">
-                    Dubai Marina is primarily a cash market with 65% cash buyers.
+                    Buyer interest is increasing by 12% month-over-month. Strong preference for high-floor 2BR units in the Marina.
                   </p>
                 </div>
               </div>
@@ -887,62 +858,37 @@ export default function App() {
                 <div>
                   <div className="text-[15px] font-[700] text-[#111827] mb-1 font-sans">Negotiation margin</div>
                   <p className="text-[13px] text-[#6B7280] leading-relaxed font-[500]">
-                    Average negotiation discount is 3-5% in this area.
+                    Average negotiation discount is 3-5% for premium units in this cluster. Cash transactions see even lower margins.
                   </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#E5E7EB] rounded-[16px] p-6 shadow-sm">
-            <div className="flex flex-col md:flex-row items-stretch gap-6 md:gap-12">
-              {/* Scores Side */}
-              <div className="flex items-center gap-10 lg:gap-16 shrink-0">
-                <div>
-                  <div className="text-[11px] font-[700] text-[#94A3B8] mb-1.5 tracking-wider">Demand Score</div>
-                  <div className="text-[26px] font-[800] text-[#166534] leading-none">High</div>
-                </div>
-                <div className="w-px h-10 bg-[#F1F5F9] hidden sm:block" />
-                <div>
-                  <div className="text-[11px] font-[700] text-[#94A3B8] mb-1.5 tracking-wider">Supply Score</div>
-                  <div className="text-[26px] font-[800] text-[#1D4ED8] leading-none">Moderate</div>
-                </div>
-              </div>
-
-              {/* Insight Side */}
-              <div className="flex-1 border-l-0 md:border-l border-[#F1F5F9] md:pl-12 flex items-center">
-                <div className="text-[14px] text-[#64748B] leading-relaxed font-[500]">
-                  <span className="font-[700] text-[#111827] block mb-1">High demand outweighs competition</span>
-                  Your property is in a favorable market position with buyer interest exceeding available inventory.
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Comparables Section */}
+        {/* Market Comparables Section */}
         <section id="market-comparables" className="mb-14">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-[24px] font-[700] text-[#111827]">Comparables</h2>
+            <h2 className="text-[24px] font-[700] text-[#111827]">Market Comparables</h2>
           </div>
 
           {/* Tabs */}
           <div className="flex items-center gap-8 border-b border-[#E5E7EB] mb-8">
-            <button 
-              onClick={() => setComparableTab('marina')}
-              className={`pb-4 text-[15px] font-[700] transition-all relative ${comparableTab === 'marina' ? 'text-[#00897B]' : 'text-[#6B7280] hover:text-[#111827]'}`}
-            >
-              Dubai Marina
-              {comparableTab === 'marina' && (
-                <motion.div layoutId="activeTab" className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#00897B]" />
-              )}
-            </button>
             <button 
               onClick={() => setComparableTab('damac')}
               className={`pb-4 text-[15px] font-[700] transition-all relative ${comparableTab === 'damac' ? 'text-[#00897B]' : 'text-[#6B7280] hover:text-[#111827]'}`}
             >
               DAMAC Heights
               {comparableTab === 'damac' && (
+                <motion.div layoutId="activeTab" className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#00897B]" />
+              )}
+            </button>
+            <button 
+              onClick={() => setComparableTab('marina')}
+              className={`pb-4 text-[15px] font-[700] transition-all relative ${comparableTab === 'marina' ? 'text-[#00897B]' : 'text-[#6B7280] hover:text-[#111827]'}`}
+            >
+              Dubai Marina
+              {comparableTab === 'marina' && (
                 <motion.div layoutId="activeTab" className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-[#00897B]" />
               )}
             </button>
@@ -959,19 +905,19 @@ export default function App() {
                   <table className="w-full text-left border-collapse table-fixed">
                     <thead>
                       <tr className="bg-[#F9FAFB] border-b border-[#E5E7EB] h-[56px]">
-                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] w-[36%]">Property</th>
-                        <th className="px-4 text-[13px] font-[600] text-[#6B7280] text-center w-[10%]">Beds</th>
-                        <th className="px-4 text-[13px] font-[600] text-[#6B7280] text-center w-[10%]">Baths</th>
-                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] text-center w-[20%]">Days on Market</th>
-                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] text-right w-[24%] pr-6">Sold Price</th>
+                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] w-[35%]">Property</th>
+                        <th className="px-4 text-[13px] font-[600] text-[#6B7280] text-center w-[12%]">Beds</th>
+                        <th className="px-4 text-[13px] font-[600] text-[#6B7280] text-center w-[12%]">Baths</th>
+                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] text-center w-[16%]">Days on Market</th>
+                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] text-right w-[25%] pr-8">Transaction Price</th>
                       </tr>
                     </thead>
                     <tbody>
                       {[
-                        { property: "Unit 2105, DAMAC Heights", beds: 2, baths: 3, dom: "38 days", price: "2,780,000" },
-                        { property: "Unit 1804, DAMAC Heights", beds: 2, baths: 2, dom: "25 days", price: "2,920,000" },
-                        { property: "Unit 902, DAMAC Heights", beds: 2, baths: 2, dom: "52 days", price: "2,650,000" },
-                        { property: "Unit 1205, DAMAC Heights", beds: 2, baths: 3, dom: "41 days", price: "2,810,000" },
+                        { property: "Unit 2105, DAMAC Heights", beds: 2, baths: 3, dom: "38 days", price: "2,780,000", diff: "+2.5%" },
+                        { property: "Unit 1804, DAMAC Heights", beds: 2, baths: 2, dom: "25 days", price: "2,920,000", diff: "-2.4%" },
+                        { property: "Unit 902, DAMAC Heights", beds: 2, baths: 2, dom: "52 days", price: "2,650,000", diff: "+3.7%" },
+                        { property: "Unit 1205, DAMAC Heights", beds: 2, baths: 3, dom: "41 days", price: "2,810,000", diff: "+3.2%" },
                       ].map((item, idx) => (
                         <tr key={idx} className="border-b border-[#F3F4F6] last:border-b-0 hover:bg-[#F9FAFB] transition-colors h-[80px]">
                           <td className="px-6">
@@ -986,8 +932,8 @@ export default function App() {
                           <td className="px-4 text-[14px] text-[#111827] font-[700] text-center">{item.beds}</td>
                           <td className="px-4 text-[14px] text-[#111827] font-[700] text-center">{item.baths}</td>
                           <td className="px-6 text-[14px] text-[#4B5563] font-[500] text-center">{item.dom}</td>
-                          <td className="px-6 text-right pr-6">
-                            <div className="text-[15px] font-[700] text-[#111827]">AED {item.price}</div>
+                          <td className="px-6 text-right pr-8">
+                            <div className="text-[14px] font-[700] text-[#111827]">AED {item.price}</div>
                           </td>
                         </tr>
                       ))}
@@ -1007,18 +953,18 @@ export default function App() {
                   <table className="w-full text-left border-collapse table-fixed">
                     <thead>
                       <tr className="bg-[#F9FAFB] border-b border-[#E5E7EB] h-[56px]">
-                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] w-[36%]">Property</th>
-                        <th className="px-4 text-[13px] font-[600] text-[#6B7280] text-center w-[10%]">Beds</th>
-                        <th className="px-4 text-[13px] font-[600] text-[#6B7280] text-center w-[10%]">Baths</th>
-                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] text-center w-[20%]">Days on Market</th>
-                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] text-right w-[24%] pr-6">Sold Price</th>
+                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] w-[35%]">Property</th>
+                        <th className="px-4 text-[13px] font-[600] text-[#6B7280] text-center w-[12%]">Beds</th>
+                        <th className="px-4 text-[13px] font-[600] text-[#6B7280] text-center w-[12%]">Baths</th>
+                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] text-center w-[16%]">Days on Market</th>
+                        <th className="px-6 text-[13px] font-[600] text-[#6B7280] text-right w-[25%] pr-8">Transaction Price</th>
                       </tr>
                     </thead>
                     <tbody>
                       {[
-                        { property: "Marina Gate Tower 1", beds: 2, baths: 2, dom: "40 days", price: "2,850,000" },
-                        { property: "Cayan Tower", beds: 2, baths: 3, dom: "54 days", price: "2,900,000" },
-                        { property: "Marina Promenade", beds: 2, baths: 2, dom: "33 days", price: "2,750,000" },
+                        { property: "Marina Gate Tower 1", beds: 2, baths: 2, dom: "40 days", price: "2,850,000", diff: "+3.5%" },
+                        { property: "Cayan Tower", beds: 2, baths: 3, dom: "54 days", price: "2,900,000", diff: "-1.7%" },
+                        { property: "Marina Promenade", beds: 2, baths: 2, dom: "33 days", price: "2,750,000", diff: "+1.8%" },
                       ].map((item, idx) => (
                         <tr key={idx} className="border-b border-[#F3F4F6] last:border-b-0 hover:bg-[#F9FAFB] transition-colors h-[80px]">
                           <td className="px-6">
@@ -1033,8 +979,8 @@ export default function App() {
                           <td className="px-4 text-[14px] text-[#111827] font-[700] text-center">{item.beds}</td>
                           <td className="px-4 text-[14px] text-[#111827] font-[700] text-center">{item.baths}</td>
                           <td className="px-6 text-[14px] text-[#4B5563] font-[500] text-center">{item.dom}</td>
-                          <td className="px-6 text-right pr-6">
-                            <div className="text-[15px] font-[700] text-[#111827]">AED {item.price}</div>
+                          <td className="px-6 text-right pr-8">
+                            <div className="text-[14px] font-[700] text-[#111827]">AED {item.price}</div>
                           </td>
                         </tr>
                       ))}
@@ -1106,7 +1052,7 @@ export default function App() {
                   <div className="w-10 h-10 bg-[#EFF6FF] rounded-lg flex items-center justify-center text-[#2563EB] shrink-0 border border-[#DBEAFE]">
                     <Award size={20} />
                   </div>
-                  <h3 className="text-[16px] font-[700] text-[#111827] leading-tight max-w-[140px]">Signature Tag Applied</h3>
+                  <h3 className="text-[16px] font-[700] text-[#111827] leading-tight max-w-[140px]">Signature Applied</h3>
                 </div>
                 <p className="text-[13px] text-[#64748B] font-[500] leading-[1.55]">
                   Appears at the top of search results, maximizing visibility and attracting more buyer leads.
@@ -1119,7 +1065,7 @@ export default function App() {
                   <div className="w-10 h-10 bg-[#F0FDF4] rounded-lg flex items-center justify-center text-[#166534] shrink-0 border border-[#DCFCE7]">
                     <CheckCircle size={20} />
                   </div>
-                  <h3 className="text-[16px] font-[700] text-[#111827] leading-tight max-w-[140px]">TruChecked™ Listing</h3>
+                  <h3 className="text-[16px] font-[700] text-[#111827] leading-tight max-w-[140px]">TruCheck™ Listing</h3>
                 </div>
                 <p className="text-[13px] text-[#64748B] font-[500] leading-[1.55]">
                   Verified for accuracy and availability, increasing buyer trust and improving listing performance.
@@ -1145,7 +1091,7 @@ export default function App() {
         </main>
         </div>
 
-        {/* Right Sidebar Agent Comments */}
+        {/* Right Sidebar Agent Notes */}
         <aside className="w-[320px] shrink-0 sticky top-6 h-[calc(100vh-48px)] flex flex-col gap-6">
           <div className="bg-white border border-[#E5E7EB] rounded-[24px] shadow-sm flex flex-col h-full overflow-hidden">
             <div className="p-6 border-b border-[#F1F5F9] flex items-center justify-between bg-white shrink-0">
@@ -1153,7 +1099,7 @@ export default function App() {
                 <div className="w-[36px] h-[36px] flex items-center justify-center text-[#111827]">
                   <MessageSquare size={20} />
                 </div>
-                <h3 className="text-[16px] font-[800] text-[#111827]">Agent Comments</h3>
+                <h3 className="text-[16px] font-[800] text-[#111827]">Agent Notes</h3>
               </div>
               <button className="text-[#9CA3AF] hover:text-[#111827] transition-colors">
                 <Plus size={20} />
@@ -1161,7 +1107,7 @@ export default function App() {
             </div>
             
             <div className="px-6 py-2 overflow-y-auto flex-1 space-y-4 custom-scrollbar">
-              {agentCommentsList.map((note, idx) => (
+              {agentNotesList.map((note, idx) => (
                 <div key={idx} className="bg-[#F8FAFC] border border-[#F1F5F9] rounded-[16px] p-5">
                   <div className="text-[12px] font-[500] text-[#9CA3AF] mb-2">{note.date}</div>
                   <p className="text-[14px] text-[#475569] leading-relaxed font-[500]">
@@ -1172,7 +1118,7 @@ export default function App() {
             </div>
 
             <div className="p-6 bg-[#F8FAFC] border-t border-[#F1F5F9] text-center shrink-0 text-[14px] font-[700] text-[#9CA3AF]">
-              {agentCommentsList.length} comments added
+              {agentNotesList.length} notes added
             </div>
           </div>
         </aside>
