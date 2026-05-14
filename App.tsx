@@ -279,21 +279,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Pricing Bar - Re-aligned to same size as header/sidebar container */}
-      <div className="max-w-[1600px] mx-auto px-8 mb-12">
-        <div className="bg-white border border-[#E5E7EB] h-[80px] rounded-[20px] px-8 flex items-center justify-between shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#F0FDF4] rounded-[10px] flex items-center justify-center text-[#00897B] border border-[#DCFCE7]">
-              <Tag size={20} />
-            </div>
-            <span className="text-[18px] font-[700] text-[#111827]">Listing Price</span>
-          </div>
-          <div className="flex items-center justify-end">
-            <div className="text-[32px] font-[800] text-[#111827]">AED {MOCK_PROPERTY.price.toLocaleString()}</div>
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-[1600px] mx-auto flex gap-8 px-8 pb-12 items-start">
         {/* Left Sidebar Navigation */}
         <aside className="w-[280px] shrink-0 sticky top-[24px] h-[calc(100vh-48px)] flex flex-col gap-4 overflow-hidden">
